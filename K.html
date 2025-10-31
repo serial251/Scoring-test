@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <title>Result Summary</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Primary Colors */
+            --clr-light-red: hsl(0, 100%, 67%);
+            --clr-orangey-yellow: hsl(39, 100%, 56%);
+            --clr-green-teal: hsl(166, 100%, 37%);
+            --clr-cobalt-blue: hsl(234, 85%, 45%);
+
+            /* Gradients */
+            --clr-bg-gradient-top: hsl(252, 100%, 67%); /* Light slate blue */
+            --clr-bg-gradient-bottom: hsl(241, 81%, 54%); /* Light royal blue */
+            --clr-circle-gradient-top: hsla(256, 72%, 46%, 1); /* Violet blue */
+            --clr-circle-gradient-bottom: hsla(241, 72%, 46%, 0); /* Persian blue (with alpha) */
+
+            /* Neutral Colors */
+            --clr-white: hsl(0, 0%, 100%);
+            --clr-pale-blue: hsl(221, 100%, 96%);
+            --clr-light-lavender: hsl(241, 100%, 89%);
+            --clr-dark-gray-blue: hsl(224, 30%, 27%);
+
+            /* Fonts */
+            --fw-500: 500;
+            --fw-700: 700;
+            --fw-800: 800;
+            --fs-base: 18px;
+        }
+        
+        /* ========================================================
+        | General Styles & Typography
+        ========================================================
+        */
+        * {
+            font-family: 'Hanken Grotesk', sans-serif; 
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            /* Stack children (container and attribution) vertically */
+            flex-direction: column;
+            align-items: center;
+            /* Use min-height 100vh so it fills the screen height */
+            min-height: 100vh;
+            justify-content: center;
+            background-color: var(--clr-pale-blue);
+            font-size: var(--fs-base);
+            /* Remove padding here, let the container handle spacing on desktop */
+            padding: 0; 
+        }
+        
+        .container {
+            display: flex;
+            max-width: 700px;
+            width: 100%;
+            background-color: var(--clr-white);
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .result-section {
+            flex: 1;
+            background: linear-gradient(to bottom, var(--clr-bg-gradient-top), var(--clr-bg-gradient-bottom));
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            color: var(--clr-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .result-title {
+            font-size: 22px;
+            font-weight: var(--fw-700);
+            margin-bottom: 30px;
+            color: var(--clr-light-lavender); 
+        }
+        
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(to bottom, var(--clr-circle-gradient-top), var(--clr-circle-gradient-bottom));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .score-value {
+            font-size: 60px;
+            font-weight: var(--fw-800);
+        }
+        
+        .score-total {
+            font-size: 16px;
+            color: var(--clr-light-lavender);
+            font-weight: var(--fw-700);
+        }
+        
+        .result-grade {
+            font-size: 28px;
+            font-weight: var(--fw-700);
+            margin: 20px 0 10px;
+        }
+        
+        .result-description {
+            color: var(--clr-light-lavender);
+            font-size: 16px;
+            line-height: 1.5;
+            max-width: 250px;
+        }
+        
+        .summary-section {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .summary-title {
+            font-size: 22px;
+            font-weight: var(--fw-700);
+            margin-bottom: 25px;
+            color: var(--clr-dark-gray-blue);
+        }
+        
+        .summary-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: var(--fw-700);
+        }
+        
+        .item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .item-score {
+            color: var(--clr-dark-gray-blue);
+        }
+        
+        .item-score span {
+            color: hsl(224, 30%, 27%, 0.5);
+        }
+        
+        .reaction {
+            background-color: hsl(0, 100%, 67%, 0.1);
+            color: var(--clr-light-red);
+        }
+        
+        .memory {
+            background-color: hsl(39, 100%, 56%, 0.1);
+            color: var(--clr-orangey-yellow);
+        }
+        
+        .verbal {
+            background-color: hsl(166, 100%, 37%, 0.1);
+            color: var(--clr-green-teal);
+        }
+        
+        .visual {
+            background-color: hsl(234, 85%, 45%, 0.1);
+            color: var(--clr-cobalt-blue);
+        }
+        
+        .continue-btn {
+            background-color: var(--clr-dark-gray-blue);
+            color: var(--clr-white);
+            border: none;
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: var(--fw-700);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        /* UPDATED HOVER COLOR FROM K.HTML */
+        .continue-btn:hover {
+            background: linear-gradient(180deg, var(--clr-bg-gradient-top) 0%, var(--clr-bg-gradient-bottom) 100%);
+        }
+        
+        .attribution { 
+            font-size: 11px; 
+            text-align: center; 
+            margin-top: 20px;
+        }
+        .attribution a { 
+            color: var(--clr-cobalt-blue); 
+        }
+        
+        /* ========================================================
+        | MOBILE STYLES (Max-width 650px)
+        | This section is heavily modified to match the design image
+        ======================================================== */
+        @media (max-width: 650px) {
+            /* 1. Body adjusts for full-screen mobile view */
+            body {
+                /* Remove vertical centering to stick card to top edge */
+                justify-content: flex-start; 
+                /* Ensure no extra margin on the sides */
+                padding: 0;
+            }
+
+            /* 2. Container takes full width, no shadows, no rounding on top */
+            .container {
+                flex-direction: column;
+                width: 100vw;
+                max-width: none; /* Allow it to be full width */
+                border-radius: 0; /* Remove rounding for full-screen effect */
+                box-shadow: none; /* Remove box shadow on mobile */
+                /* Give it a minimum height to ensure it stretches */
+                min-height: 100vh;
+            }
+            
+            /* 3. Result section styling */
+            .result-section {
+                /* Key fix: No top rounding on mobile */
+                border-radius: 0 0 30px 30px; 
+                padding: 25px 30px 40px; /* Reduced top padding */
+                /* Adjust spacing between elements */
+                gap: 15px;
+            }
+            
+            .result-title {
+                margin-bottom: 5px; /* Reduced margin */
+                font-size: 18px;
+            }
+
+            .score-circle {
+                width: 140px;
+                height: 140px;
+                margin: 15px 0 10px; /* Reduced vertical margins */
+            }
+            
+            .score-value {
+                font-size: 50px;
+            }
+            
+            .score-total {
+                font-size: 16px;
+            }
+            
+            .result-grade {
+                font-size: 24px;
+                margin: 5px 0 8px;
+            }
+            
+            .result-description {
+                font-size: 15px;
+                max-width: 100%;
+            }
+
+            /* 4. Summary section styling */
+            .summary-section {
+                padding: 25px 30px 40px;
+            }
+
+            .summary-title {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .summary-items {
+                margin-bottom: 25px;
+            }
+
+            /* 5. Attribution is now handled slightly differently to look better below the full-width card */
+            .attribution {
+                /* Move it out of the container flow and center it better */
+                width: 100%;
+                text-align: center;
+                margin: 15px 0;
+                order: 3; /* Ensure it is the last item in the flex column */
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="result-section">
+            <h2 class="result-title">Your Result</h2>
+            <div class="score-circle">
+                <div class="score-value">76</div>
+                <div class="score-total">of 100</div>
+            </div>
+            <div>
+                <h3 class="result-grade">Great</h3>
+                <p class="result-description">You scored higher than 65% of the people who have taken these tests.</p>
+            </div>
+        </div>
+        
+        <div class="summary-section">
+            <h2 class="summary-title">Summary</h2>
+            <div class="summary-items">
+                <div class="summary-item reaction">
+                    <div class="item-left">
+                        <i class="fas fa-bolt"></i>
+                        <span>Reaction</span>
+                    </div>
+                    <div class="item-score">80 <span>/ 100</span></div>
+                </div>
+                
+                <div class="summary-item memory">
+                    <div class="item-left">
+                        <i class="fas fa-brain"></i>
+                        <span>Memory</span>
+                    </div>
+                    <div class="item-score">92 <span>/ 100</span></div>
+                </div>
+                
+                <div class="summary-item verbal">
+                    <div class="item-left">
+                        <i class="fas fa-comments"></i>
+                        <span>Verbal</span>
+                    </div>
+                    <div class="item-score">61 <span>/ 100</span></div>
+                </div>
+                
+                <div class="summary-item visual">
+                    <div class="item-left">
+                        <i class="fas fa-eye"></i>
+                        <span>Visual</span>
+                    </div>
+                    <div class="item-score">73 <span>/ 100</span></div>
+                </div>
+            </div>
+            
+            <button class="continue-btn">Continue</button>
+        </div>
+    </div>
+<div class="attribution">
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+  Coded by <a href="#">Your Name Here</a>.
+</div>
+</body>
+</html>
