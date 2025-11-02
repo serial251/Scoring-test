@@ -1,0 +1,26 @@
+<style>
+        :root {
+            /* Primary Colors */
+            --clr-light-red: hsl(0, 100%, 67%);
+            --clr-orangey-yellow: hsl(39, 100%, 56%);
+            --clr-green-teal: hsl(166, 100%, 37%);
+            --clr-cobalt-blue: hsl(234, 85%, 45%);
+
+            /* Gradients */
+            --clr-bg-gradient-top: hsl(252, 100%, 67%);
+            --clr-bg-gradient-bottom: hsl(241, 81%, 54%);
+            --clr-circle-gradient-top: hsla(256, 72%, 46%, 1);
+            --clr-circle-gradient-bottom: hsla(241, 72%, 46%, 0);
+
+            /* Neutral Colors */
+            --clr-white: hsl(0, 0%, 100%);
+            --clr-pale-blue: hsl(221, 100%, 96%);
+            --clr-light-lavender: hsl(241, 100%, 89%);
+            --clr-dark-gray-blue: hsl(224, 30%, 27%);
+
+            /* Fonts */
+            --fw-500: 500;
+            --fw-700: 700;
+            --fw-800: 800;
+            --fs-base: 18px;
+        }
