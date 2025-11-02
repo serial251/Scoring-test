@@ -1,0 +1,88 @@
+/* ========================================================
+        | MOBILE STYLES (Max-width 650px)
+        | This section is heavily modified to match the design image
+        ======================================================== */
+        @media (max-width: 650px) {
+            /* 1. Body adjusts for full-screen mobile view */
+            body {
+                /* Remove vertical centering to stick card to top edge */
+                justify-content: flex-start;
+                /* Ensure no extra margin on the sides */
+                padding: 0;
+            }
+
+            /* 2. Container takes full width, no shadows, no rounding on top */
+            .container {
+                flex-direction: column;
+                width: 100vw;
+                max-width: none; /* Allow it to be full width */
+                border-radius: 0; /* Remove rounding for full-screen effect */
+                box-shadow: none; /* Remove box shadow on mobile */
+                /* Give it a minimum height to ensure it stretches */
+                min-height: 100vh;
+            }
+
+            /* 3. Result section styling */
+            .result-section {
+                /* Key fix: No top rounding on mobile */
+                border-radius: 0 0 30px 30px;
+                padding: 25px 30px 40px; /* Reduced top padding */
+                /* Adjust spacing between elements */
+                gap: 15px;
+            }
+
+            .result-title {
+                margin-bottom: 5px; /* Reduced margin */
+                font-size: 18px;
+            }
+
+            .score-circle {
+                width: 140px;
+                height: 140px;
+                margin: 15px 0 10px; /* Reduced vertical margins */
+            }
+
+            .score-value {
+                font-size: 50px;
+            }
+
+            .score-total {
+                font-size: 16px;
+            }
+
+            .result-grade {
+                font-size: 24px;
+                margin: 5px 0 8px;
+            }
+
+            .result-description {
+                font-size: 15px;
+                max-width: 100%;
+            }
+
+            /* 4. Summary section styling */
+            .summary-section {
+                padding: 25px 30px 40px;
+            }
+
+            .summary-title {
+                font-size: 18px;
+                margin-bottom: 20px;
+            }
+
+            .summary-items {
+                margin-bottom: 25px;
+            }
+
+            /* 5. Attribution is now handled slightly differently to look better below the full-width card */
+            .attribution {
+                /* Move it out of the container flow and center it better */
+                width: 100%;
+                text-align: center;
+                margin: 15px 0;
+                order: 3; /* Ensure it is the last item in the flex column */
+            }
+        }
+
+    </style>
+</head>
